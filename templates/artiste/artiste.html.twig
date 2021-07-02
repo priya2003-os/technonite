@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+
+	<div class="text-center">
+		{% for i in categories %}
+			<a href="{{ path('artiste_categoryById', {id:i.id}) }}" role="button" class="btn btn-outline-{{i.color}} mx-1">{{i.name}}</a> 
+			{# <button type="button" class="btn btn-outline-{{i.color}}">{{i.name}}</button> #}
+			
+		{% endfor %}
+	</div>
+
+	<div class="row my-5">
+		{% for artiste in artistes %}
+			<div class="col-4">
+				<div class="card border-{{artiste.categori.color}} mb-3" >
+					<div class="card-header text-end"><span class="badge rounded-pill bg-{{artiste.concert ?'secondary' : 'primary'}}">{{artiste.concert ? 'Music de rue' : 'Concert' }}</span></div>
+					<div class="card-body">
+						<h4 class="card-title">DJ {{ artiste.nom }}</h4>
+						<p class="card-text">{{ artiste.description | slice(1, 100) }}...</p>
+                        <p><a href="#">Découvrir l'artiste</a></p>
+                    </div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
